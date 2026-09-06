@@ -1,0 +1,8 @@
+# Instruction files / write-up (not part of the submitted solution)
+*.pdf
+CODE_EXPLAINED.md
+
+# Build artifacts
+mini_shell
+*.o
+*.out
