@@ -2,7 +2,6 @@
 *.pdf
 CODE_EXPLAINED.md
 
-# Build artifacts
-mini_shell
+# Build artifacts (mini_shell is the required submitted executable - tracked, not ignored)
 *.o
 *.out
