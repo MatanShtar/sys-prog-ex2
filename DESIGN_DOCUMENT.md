@@ -2,6 +2,10 @@
 
 Systems Programming, Exercise 2
 
+**GitHub Repository:** https://github.com/MatanShtar/sys-prog-ex2
+(public; contains the source file `mini_shell.c`, the `Makefile`, and the
+compiled executable `mini_shell`.)
+
 ## 1. Purpose and Requirements
 
 The goal of this exercise is to implement a minimal command-line interpreter
