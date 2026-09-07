@@ -28,7 +28,7 @@ by waiting on each other.
 | Internal command `cd` (via `chdir`) | `run_cd()` |
 | External command search: `$HOME` then `/bin` | `run_external_command()` + `build_candidate_path()` |
 | Must verify the file is executable, not just present | `access(path, X_OK)` |
-| Unknown command message | `"%s: Unknown Command\n"` to `stderr` |
+| Unknown command message | `"[%s]: Unknown Command\n"` to `stderr` |
 | Process creation via `fork` | `fork()` in `run_external_command()` |
 | Program replacement via `exec` family | `execv()` |
 | Parent waits for child | `waitpid(pid, &status, 0)` |
@@ -173,7 +173,7 @@ buffer-efficiency requirement — see §4 below.
                               full_path found   access(/bin/argv[0], X_OK) ?
                                     │            yes│          │no
                                     │                ▼          ▼
-                                    │          full_path found  print "argv[0]: Unknown Command"
+                                    │          full_path found  print "[argv[0]]: Unknown Command"
                                     │                │           (loop back to prompt)
                                     └───────┬────────┘
                                             ▼
@@ -234,7 +234,7 @@ assignment's requirement:
 | `execv` | file not actually executable/valid, or vanished after the `access()` check | `perror("execv")` in the child, then `_exit(127)` |
 | `waitpid` | invalid/unknown pid | `perror("waitpid")`, command's outcome is simply not reported |
 | `chdir` | target missing / not a directory / no permission | `perror("cd")`, working directory left unchanged |
-| `access` (both search stages failing) | not an "error" — an expected outcome of the search algorithm | `"<command>: Unknown Command"` printed to `stderr`, no process created |
+| `access` (both search stages failing) | not an "error" — an expected outcome of the search algorithm | `"[<command>]: Unknown Command"` printed to `stderr`, no process created |
 
 In every failure case, the shell **recovers and returns to the prompt**
 rather than terminating — a single bad command, missing file, or invalid

@@ -10,7 +10,7 @@
  * External command lookup order:
  *   1. $HOME/<command>   (must exist AND be executable)
  *   2. /bin/<command>    (must exist AND be executable)
- *   3. otherwise -> "<command>: Unknown Command"
+ *   3. otherwise -> "[<command>]: Unknown Command"
  *
  * Process management for external commands uses the classic Unix trio:
  *   fork()    - create a child process (a near-exact copy of the shell)
@@ -126,7 +126,7 @@ static void run_external_command(char *argv[], const char *home)
 
     /* Stage C: not found anywhere - report per the required format. */
     if (!found) {
-        fprintf(stderr, "%s: Unknown Command\n", argv[0]);
+        fprintf(stderr, "[%s]: Unknown Command\n", argv[0]);
         return;
     }
 

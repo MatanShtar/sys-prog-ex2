@@ -13,7 +13,7 @@ The shell runs an infinite prompt/read/parse/execute loop:
   `access(path, X_OK)`); if found, run via `fork()` + `execv()`, with the
   parent shell blocking on `waitpid()` until the child finishes and then
   reporting its exit code. If not found anywhere, prints
-  `<command>: Unknown Command`.
+  `[<command>]: Unknown Command`.
 
 See [`DESIGN_DOCUMENT.md`](DESIGN_DOCUMENT.md) for the full design
 rationale, system-call-by-system-call analysis, program flow, and error
@@ -41,7 +41,7 @@ mini-bash$ ls -l
 ls finished successfully (exit code: 0)
 mini-bash$ cd /tmp
 mini-bash$ doesnotexist
-doesnotexist: Unknown Command
+[doesnotexist]: Unknown Command
 mini-bash$ exit
 ```
 
